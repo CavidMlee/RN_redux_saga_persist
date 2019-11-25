@@ -17,7 +17,6 @@ const middleware = [];
 const sagaMiddleware = createSagaMiddleware();
 
 middleware.push(sagaMiddleware);
-middleware.push(apiMiddleware);
 
 if(__DEV__){
     middleware.push(createLogger());
@@ -30,6 +29,7 @@ const persistConfig = {enhancers};
 const store = createStore(reducers,compose(...enhancers))
 const persistor = persistStore(store,persistConfig,()=>{
     console.warn('Test',store.getState());
+    console.warn('Reducerler ',rootReducers)
 });
 
 const configureStore = ()=>{
@@ -38,3 +38,4 @@ const configureStore = ()=>{
 
 sagaMiddleware.run(sagas)
 
+export default configureStore;
