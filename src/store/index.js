@@ -10,12 +10,14 @@ import sagas from '../sagas'
 const config = {
     key:'root',
     storage:AsyncStorage,
-    debug:true
+    debug:true,
+    blacklist:['loginReducer'] 
+
 };
 
 const middleware = [];
 const sagaMiddleware = createSagaMiddleware();
-
+ 
 middleware.push(sagaMiddleware);
 
 if(__DEV__){
@@ -28,8 +30,7 @@ const enhancers = [applyMiddleware(...middleware)];
 const persistConfig = {enhancers};
 const store = createStore(reducers,compose(...enhancers))
 const persistor = persistStore(store,persistConfig,()=>{
-    console.warn('Test',store.getState());
-    console.warn('Reducerler ',rootReducers)
+    // console.warn('Test',store.getState());
 });
 
 const configureStore = ()=>{

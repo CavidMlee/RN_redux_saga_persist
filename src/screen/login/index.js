@@ -1,22 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StatusBar, TextInput } from 'react-native';
-import navigation from '../../navigation';
 import LinearGradient from 'react-native-linear-gradient';
+import { connect } from "react-redux";
+import { loginAction } from '../../action/login'
 import styles from './styles'
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation, loginAction, loginData }) => {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
     const onPress = () => {
         if (password.length >= 5) {
-            navigation.navigate("Main")
+            //navigation.navigate("Main")
+            loginAction({
+                userName,
+                password
+            })
         }
         else {
             alert("Your password must not be less than 5 characters!")
         }
     }
+
+    const onPressPersist = () => {
+        if (loginData.userName) {
+            setUserName(loginData.userName);
+            setPassword(loginData.password)
+        }
+        else {
+            alert('No data')
+        }
+    }
+
+    //console.log('LoginData ', loginData)
 
     return (
         <LinearGradient colors={['#fdf705', '#f3aa41', '#e9453b']} style={styles.container}>
@@ -47,10 +64,20 @@ const Login = ({ navigation }) => {
 
             <TouchableOpacity onPress={() => onPress()}
                 style={styles.buttonContainer}>
-                <Text style={styles.textContainer}>Main</Text>
+                <Text style={styles.textContainer}>LogIn</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => onPressPersist()}
+                style={styles.buttonContainer}>
+                <Text style={styles.textContainer}>Show my data</Text>
             </TouchableOpacity>
         </LinearGradient>
     )
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+    //loginData: state.loginReducer.loginData
+    loginData: state.default.loginData
+})
+
+export default connect(mapStateToProps, { loginAction })(Login);
