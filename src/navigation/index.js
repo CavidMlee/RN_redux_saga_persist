@@ -1,21 +1,14 @@
-import React from "react";
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from 'react-navigation-stack'
-import {Login,Main} from '../screen'
+import React from 'react';
+import NavigationStack from './navigationStack';
+import NavigationService from './navigationService';
 
-const defaultNavigationOption = { header: null };
-
-const AppNavigator = createStackNavigator({
-    Login: {
-        screen: Login,
-        navigationOptions: defaultNavigationOption,
-        path: 'login'
-    },
-    Main: {
-        screen: Main,
-        navigationOptions: defaultNavigationOption,
-        path: 'main'
-    }
-});
-
-export default createAppContainer(AppNavigator)
+const AppNavigators = () => {
+    return (
+        <NavigationStack
+            ref={navigatorRef => {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
+        />
+    )
+}
+export default AppNavigators

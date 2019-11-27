@@ -1,26 +1,31 @@
-import {NavigationActions } from "react-navigation";
+import { NavigationActions } from "react-navigation";
 
 type RouteName = "Main";
 
 let navigator;
 
-const navigate=(routeName:RouteName,params)=>{
+const setTopLevelNavigator=(navigatorRef)=>{
+    navigator = navigatorRef
+}
+
+const navigate = (routeName: RouteName, params) => {
     navigator.dispatch(
         NavigationActions.navigate({
-            routeName,params
+            routeName, params
         })
     );
 };
 
-const goBack =(key)=>{
+const goBack = (key) => {
     navigator.dispatch(
         NavigationActions.back({
-            key:key
+            key: key
         })
     )
 };
 
 export default {
+    setTopLevelNavigator,
     navigate,
     goBack
 }

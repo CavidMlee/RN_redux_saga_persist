@@ -13,27 +13,34 @@ const styles = StyleSheet.create({
     },
 
     inputStyle: {
-        borderRadius: 30,
         width: '90%',
         padding: 15,
         height: 60,
         backgroundColor: 'transparent', //#8a4fb6
         borderColor: 'white',
-        borderWidth: 1.5,
+        borderBottomWidth: 1.5,
         fontSize: 18,
         color: 'white'
     },
     buttonContainer: {
         marginTop:40,
+        borderWidth:1.5,
+        borderColor:'white',
         borderRadius:30,
         justifyContent: 'center',
         alignItems: 'center',
-        width: '35%',
+        width: '50%',
         height: 50,
-        backgroundColor: 'yellow'
+        backgroundColor: 'transparent'
+    },
+    btnView:{
+        width:'100%',
+        height:'auto',
+        alignItems:'center',
+        marginTop:60
     },
     textContainer:{
-        color:'black',
+        color:'white',
         fontSize:18
     }
 });

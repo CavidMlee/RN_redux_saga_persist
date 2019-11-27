@@ -11,8 +11,7 @@ const config = {
     key:'root',
     storage:AsyncStorage,
     debug:true,
-    blacklist:['loginReducer'] 
-
+    blacklist:['loginReducer'] ,
 };
 
 const middleware = [];
